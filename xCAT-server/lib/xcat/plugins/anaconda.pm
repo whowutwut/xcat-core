@@ -1252,6 +1252,10 @@ sub mkinstall
                     and -r "$pkgdir/install.vgz"
                     and $esxi = 'true'
 
+                ) or (
+                    # These are the kernel/initrd files on the Fedora CoreOS iso 
+                    -r "$pkgdir/images/vmlinuz" and $kernpath = "$pkgdir/images/vmlinuz"
+                    and -r "$pkgdir/images/initramfs.img" and $initrdpath = "$pkgdir/images/initramfs.img"
                 )
             ) or ($arch =~ /ppc/
                 and ((-r "$pkgdir/ppc/ppc64/vmlinuz"
